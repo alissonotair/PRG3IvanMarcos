@@ -2,6 +2,8 @@ package jcolonia.daw2020.mayo;
 
 import java.util.Scanner;
 
+
+
 /**
  * Gestión de números «decimales»: recogida y visualización de la suma
  * 
@@ -13,7 +15,7 @@ public class ControlSumatorio {
 	 * Texto identificativo de las funciones de la aplicación que aparecerán en el
 	 * menú principal.
 	 */
-	private static final String[] OPCIONES_MENÚ_PRINCIPAL = { "Agregar valor", "Mostrar valores", "Mostrar suma",
+	private static final String[] OPCIONES_MENÚ_PRINCIPAL = { "Sumatorio","Agregar valor", "Mostrar valores", "Mostrar suma",
 			"Restablecer" };
 
 	/**
@@ -45,27 +47,58 @@ public class ControlSumatorio {
 		do {
 			entrada = menúPrincipal.elegirOpción();
 			switch (entrada) {
-			case 0: // Salir
+			case 0://Salir
 				menúPrincipal.mostrarMensaje("¡¡¡A-D-I-O-S!!");
 				break;
-//			case 1: // Opción 1: Entrada datos
-//				cargarSumando();
-//				break;
-//			case 2: // Opción 2: Mostrar sumandos
-//				mostrarSumandos();
-//				break;
-//			case 3: // Opción 3: Mostrar suma
-//				mostrarSuma();
-//				break;
-//			case 4: // Opción 4: Reset
-//				restablecer();
-//				break;
+			case 1: // Opción 1: Entrada datos
+			cargarSumando();
+			break;
+			case 2: // Opción 2: Mostrar sumandos
+				mostrarSumandos();
+				break;
+			case 3: // Opción 3: Mostrar suma
+				mostrarSuma();
+				break;
+			case 4: // Opción 4: Reset
+				restablecer();
+				break;
 			default: // Opción no esperada: abortar
 				ejecutarGenérico(entrada);
 				System.err.println("Error interno de programa - operación pendiente de desarrollo");
 				System.exit(1);
 			}
 		} while (entrada != 0);
+	}
+
+	private void restablecer() {
+		ListaNúmeros conjunto2;
+		
+		conjunto2= new ListaNúmeros();
+		conjunto=conjunto2;
+		
+	}
+
+	private void mostrarSuma() {
+		VistaSuma vista;
+		vista = new VistaSuma(null, in);
+		vista.mostrarSuma(conjunto.toString());
+		
+	}
+
+	private void mostrarSumandos() {
+		VistaListadoNúmeros vista;
+		vista = new VistaListadoNúmeros(null, in);
+		vista.mostrarListado(conjunto.toListaString());
+		
+	}
+
+	private void cargarSumando() {
+		VistaAgregarValores vista;
+		
+		vista = new VistaAgregarValores(in);
+		vista.agregarValor(conjunto);
+		
+		
 	}
 
 	private void ejecutarGenérico(int id) {
